@@ -5,3 +5,4 @@ Sleep patterns can be an important indicator of sleep apnea, insomnia, and risk 
 ## Data
 The dataset chosen is the Sleep Telemetry EDF data from the PhysioNet database which contains 44 sleep recordings with corresponding manual labels developed by well-trained professionals. The sleep patterns are categorized into stages W, R, 1, 2, 3, 4, M (Movement time) and ? (not scored).
 The 44 recordings were developed through 22 subjects (7 male and 15 female). The histogram showing the distribution of the age of the subjects is shown in Fig.1 below. About 54% of the subjects are in the age bracket 18-42.
+![WhatsApp Image 2020-04-25 at 8 47 07 PM](https://user-images.githubusercontent.com/52098514/81017052-930e0c80-8e2f-11ea-86a9-e37be23cedbf.jpeg)
