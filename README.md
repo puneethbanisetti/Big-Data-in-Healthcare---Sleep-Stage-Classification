@@ -48,3 +48,12 @@ As for the CRNN models, multiple architectures were tried out including tuning h
   
 Each of the convolution layers were followed by ReLU activation and a max pooling of size 2. This is followed by a linear transformation connected to a hidden layer with 128 nodes and then a GRU layer with a hidden size of 32, 5 layers and a dropout ratio of 0.2 connected linearly to the output layer with 6 nodes. The model has been implemented on 40 epochs and a batch size of 256.  
 
+![accuracy_curves (1)](https://user-images.githubusercontent.com/52098514/81036465-3598b080-8e6d-11ea-8ea1-4d61a43d66e7.png)
+![loss_curves (1)](https://user-images.githubusercontent.com/52098514/81036457-316c9300-8e6d-11ea-8754-f6960db5a663.png)
+![normalized_confusion_matrix (1)](https://user-images.githubusercontent.com/52098514/81036464-3598b080-8e6d-11ea-9dfd-bc4d99b7aeb5.png)  
+F1-score: [0.83, 0.19, 0.79, 0.11, 0.45, 0.66]  
+  
+As can be seen from the above results, this is the best model amongst all the ones explored and reducing the batch size did make a difference in improving the model performance. The overall F1 score is significantly higher with the validation accuracy of ~70%. The model does not overfit with early stopping occurring at less than 15 epochs.  
+  
+## Key Challenges and Considerations:
+One of the key challenges was using multiple tools to aggregate data. Given the size of the dataset aggregating through spark was simpler and quicker than aggregating in python but, spark does not have a built in tool to read data in EDF format which led to further complication of breaking up the preprocessing between python and spark. We created intermediary files at every step to make the transition between two tools easier. Further, the deep learning model took 6-12 hours per model we worked around this problem by using a GPU accelerator in colab followed by experimenting with batch size.
