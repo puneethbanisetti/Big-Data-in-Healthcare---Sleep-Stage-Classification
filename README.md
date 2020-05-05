@@ -36,3 +36,15 @@ F1-score: [0.80, 0.09, 0.74, 0.02, 0.61, 0.53]
 The predictions for classes such as "Sleep stage 1" and Sleep stage 3" are significantly inaccurate as can be inferred from the F1-score and the confusion matrix. Going forward, we aim to improve upon this with the RNN and the CRNN architectures.
 ### Baseline 2: RNN (3 channels):
 All 3 channels were used for the second baseline. As for the RNN architecture, we used a GRU layer with 16 hidden units and a dropout ratio of 0.2. In alignment with the data, we used 300 input channels with 3 layers. The GRU layer was followed by ReLU activation. The final output layer is a linear layer with 16 input features and 6 output features.  
+![loss_curves (1)](https://user-images.githubusercontent.com/52098514/81036069-a939be00-8e6b-11ea-9b9b-13ceb8f035fa.png)
+![accuracy_curves (1)](https://user-images.githubusercontent.com/52098514/81036070-a939be00-8e6b-11ea-95dc-a965df266532.png)
+![normalized_confusion_matrix (1)](https://user-images.githubusercontent.com/52098514/81036059-9fb05600-8e6b-11ea-8ef6-cd9ceced5374.png)  
+F1-score: [0.57, 0., 0.66, 0., 0.15, 0.33]  
+This model clearly underperforms with a less than ~55% accuracy in comparison to the accuracy of CNN Baseline 1 with an accuracy of ~65% which is also evident from the F1 scores. The model does not overfit with the training accuracies being on par with the validation accuracies and early stopping has reached before 40 epochs.
+### Final Model: CRNN (3 channels):
+As for the CRNN models, multiple architectures were tried out including tuning hyperparameters such as batch size. Here, we present the final iteration which outperformed the rest of the models, the architecture of which is:
+- The first layer with 3 input channels, 6 output channels with a kernel of size 5
+- The second layer with 6 input channels, 16 output channels with a kernel of size 5  
+  
+Each of the convolution layers were followed by ReLU activation and a max pooling of size 2. This is followed by a linear transformation connected to a hidden layer with 128 nodes and then a GRU layer with a hidden size of 32, 5 layers and a dropout ratio of 0.2 connected linearly to the output layer with 6 nodes. The model has been implemented on 40 epochs and a batch size of 512.  
+  
