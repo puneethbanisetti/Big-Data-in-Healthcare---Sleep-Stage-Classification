@@ -7,3 +7,4 @@ The dataset chosen is the Sleep Telemetry EDF data from the PhysioNet database w
 The 44 recordings were developed through 22 subjects (7 male and 15 female). The histogram showing the distribution of the age of the subjects is shown in Fig.1 below. About 54% of the subjects are in the age bracket 18-42.
 ![WhatsApp Image 2020-04-25 at 8 47 07 PM](https://user-images.githubusercontent.com/52098514/81017052-930e0c80-8e2f-11ea-86a9-e37be23cedbf.jpeg)
 ![WhatsApp Image 2020-04-25 at 8 48 11 PM](https://user-images.githubusercontent.com/52098514/81030814-2a875580-8e58-11ea-8e53-ed88f8efc207.jpeg)
+As can be seen above, the data si from a total of 44 recordings corresponding to 22 subjects (7 male and 15 female) with the dominant age group being 18-30. And from the sleep stage frequency, we can say that there is significant class imbalance in our data. Out of the available channels, only EEG Fpz-Cz, EEG Pz-Oz and EOG horizontal were considered for the prediction purposes.
