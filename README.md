@@ -10,13 +10,14 @@ The 44 recordings were developed through 22 subjects (7 male and 15 female). The
 As can be seen above, the data si from a total of 44 recordings corresponding to 22 subjects (7 male and 15 female) with the dominant age group being 18-30. And from the sleep stage frequency, we can say that there is significant class imbalance in our data. Out of the available channels, only EEG Fpz-Cz, EEG Pz-Oz and EOG horizontal were considered for the prediction purposes.
 ## Feature Engineering
 The data is aggregated into epochs of 30sec duration i.e, 300 readings are aggregated into 1-D array for each of the readings. We used the "mne" and "pyedflib" packages in python to extract the respective PSG and Hypnogram files in a CSV format.  
+  
 We aggregated the data in each of these CSVs to required format through spark. The spark code was run using spark-shell through local machines. The data frames once aggregated to the required format were saved into csv files again to be used to build input tensors for the deep learning models.  
+  
 The total number of datapoints available to build the model are 389052. The figure 2 above shows a distribution of these datapoints among different labels. “Sleep stage 2” dominates and there is significant imbalance amongst the other classes as well.
 ## Approach
 Different neural netwrok architectures such as CNN, RNN and CRNNs have been explored to carry out the multi-class classification of sleep patterns. And for the performance metric, we chose to go ahead with F1-score, since accuracy would lead to misleading interpretations given the imabalance in the data which also gives us an idea of how good the precision and recall are, simultaneously avoiding the accuracy paradox.
 ## Experimental Setup
-We used a train-test split of 70-30 to validate the trained models in order to evaluate the model performance. MNE and pyedflib readers were used in order to process the sleep telemetry electrophysiological EDF signal
-data. The data aggregation has been carried out in Spark, the data from which was used as the input for the modeling part of the project. The model has been run on Google Collaboratory in order to leverage the improved specs as compared to our personal systems. Through google colab, we used 26GB of RAM and the CPU specs are “Intel® Xeon® CPU @ 2.30GHz”.
+We used a train-test split of 70-30 to validate the trained models in order to evaluate the model performance. MNE and pyedflib readers were used in order to process the sleep telemetry electrophysiological EDF signal data. The data aggregation has been carried out in Spark, the data from which was used as the input for the modeling part of the project. The model has been run on Google Collaboratory in order to leverage the improved specs as compared to our personal systems. Through google colab, we used 26GB of RAM and the CPU specs are “Intel® Xeon® CPU @ 2.30GHz”.
 ## Results
 A lot of iterations were tried out in every architecture and here we present the best iterations from each architecture and the final results.
 ### Baseline 1: CNN (1 channel):
@@ -26,4 +27,5 @@ We used two one-dimensional convolution layers:
   - The succeeding layer with 6 input channels, 16 output channels with a kernel size 5
   
 Both the convolution layers were individually followed by a ReLU activation and a max pooling layer of size 2 with a dropout ratio of 0.2 followed by a hidden linear layer with 128 nodes followed by a ReLU activation and a dropout ratio of 0.2 and an output linear layer with 6 nodes.  
+  
 We also implemented early stopping in order to avoid overfitting with a patience of 20 epochs, the results of which can be seen below:  
