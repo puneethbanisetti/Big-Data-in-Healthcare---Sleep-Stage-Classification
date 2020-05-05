@@ -22,7 +22,7 @@ A lot of iterations were tried out in every architecture and here we present the
 ### Baseline 1: CNN (1 channel):
 For the first baseline, we used a single channel from the EEG Pz-Oz electrode as has been suggested to yield better classification performance than other channels in previous studies.  
 We used two one-dimensional convolution layers:
-* The first layer with 1 input channel, 6 output channels with a kernel of size 5
-* The succeeding layer with 6 input channels, 16 output channels with a kernel size 5  
+  - The first layer with 1 input channel, 6 output channels with a kernel of size 5
+  - The succeeding layer with 6 input channels, 16 output channels with a kernel size 5  
 Both the convolution layers were individually followed by a ReLU activation and a max pooling layer of size 2 with a dropout ratio of 0.2 followed by a hidden linear layer with 128 nodes followed by a ReLU activation and a dropout ratio of 0.2 and an output linear layer with 6 nodes.  
 We also implemented early stopping in order to avoid overfitting with a patience of 20 epochs, the results of which can be seen below:  
